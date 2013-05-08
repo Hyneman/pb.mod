@@ -183,6 +183,21 @@ EndMacro
 
 
 ; // end region
+; // region ...Module Macros...
+
+
+; // Includes the specified file relatively to the current file's path.
+Macro using
+	XIncludeFile #PB_Compiler_FilePath +
+EndMacro	
+
+; // Includes the specified file relatively to the main file's path.
+Macro include
+	XIncludeFile
+EndMacro
+
+
+; // end region
 ; // region ...Type Casting Macros...
 
 
@@ -208,7 +223,7 @@ EndMacro
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 187
-; FirstLine = 161
+; CursorPosition = 195
+; FirstLine = 173
 ; Folding = ----
 ; EnableXP
