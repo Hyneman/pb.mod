@@ -120,13 +120,32 @@ EndMacro
 
 
 ; // end region
+; // region ...Option Macros...
 
+
+; // Empty macro just used for aesthetic reasons.
+Macro option
+	;
+EndMacro
+
+; // Enables variable declaration checks.
+Macro explicit
+	EnableExplicit
+EndMacro
+
+; // Enables the debugger.
+Macro debugger
+	EnableDebugger
+EndMacro
+
+
+; // end region
 
 
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 119
-; FirstLine = 79
-; Folding = --
+; CursorPosition = 138
+; FirstLine = 98
+; Folding = ---
 ; EnableXP
