@@ -25,6 +25,9 @@
 EnableExplicit
 
 
+; // region ...Compiler Constants...
+
+
 CompilerIf #PB_Compiler_ExecutableFormat = #PB_Compiler_Console
 	#PBM_CONSOLE = #True
 	#PBM_DLL = #False
@@ -71,11 +74,28 @@ CompilerSelect #PB_Compiler_OS
 CompilerEndSelect
 
 
+; // end region
+; // region ...String Macros...
+
+
+; // Inserts a double quote caracter used to stringify identifiers.
+Macro __PBM_DQ__
+	"
+EndMacro
+
+; // Turns the specified expression into a string.
+Macro stringify(__expression)
+	__PBM_DQ__#__expression#__PBM_DQ__
+EndMacro
+
+
+; // end region
 
 
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 76
-; FirstLine = 29
+; CursorPosition = 93
+; FirstLine = 48
+; Folding = -
 ; EnableXP
