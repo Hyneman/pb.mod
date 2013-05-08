@@ -22,11 +22,60 @@
 
 
 
+EnableExplicit
+
+
+CompilerIf #PB_Compiler_ExecutableFormat = #PB_Compiler_Console
+	#PBM_CONSOLE = #True
+	#PBM_DLL = #False
+	#PBM_EXECUTABLE = #False
+CompilerEndIf
+
+CompilerIf #PB_Compiler_ExecutableFormat = #PB_Compiler_DLL
+	#PBM_CONSOLE = #False
+	#PBM_DLL = #True
+	#PBM_EXECUTABLE = #False
+CompilerEndIf
+
+CompilerIf #PB_Compiler_ExecutableFormat = #PB_Compiler_Executable
+	#PBM_CONSOLE = #False
+	#PBM_DLL = #False
+	#PBM_EXECUTABLE = #True
+CompilerEndIf
+
+
+CompilerIf #PB_Compiler_Debugger
+	#PBM_ENABLE_DEBUGGER = #True
+CompilerElse
+	#PBM_ENABLE_DEBUGGER = #False
+CompilerEndIf
+
+
+CompilerSelect #PB_Compiler_OS
+		
+	CompilerCase #PB_OS_Windows
+		#PBM_WINDOWS = #True
+		#PBM_LINUX = #False
+		#PBM_MACOS = #False
+		
+	CompilerCase #PB_OS_Linux
+		#PBM_WINDOWS = #False
+		#PBM_LINUX = #True
+		#PBM_MACOS = #False
+		
+	CompilerCase #PB_OS_MacOS
+		#PBM_WINDOWS = #False
+		#PBM_LINUX = #False
+		#PBM_MACOS = #True
+		
+CompilerEndSelect
+
 
 
 
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 24
+; CursorPosition = 76
+; FirstLine = 29
 ; EnableXP
