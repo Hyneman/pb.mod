@@ -344,4 +344,5 @@ EndMacro
 ; CursorPosition = 301
 ; FirstLine = 268
 ; Folding = ------
+; EnableUnicode
 ; EnableXP
