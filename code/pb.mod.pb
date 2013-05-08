@@ -143,7 +143,7 @@ EndMacro
 ; // This macro only needs to be called once, however it is adviced to call it at the
 ; // top of every file together with 'option explicit' and 'option debugger'.
 Macro extensions
-	CompilerIf Not symbol(PBM_EXTENSIONS_DEFINED)
+	CompilerIf Not Defined(PBM_EXTENSIONS_DEFINED, #PB_Constant)
 		#PBM_EXTENSIONS_DEFINED = #True
 		
 		Procedure.b __PBMCastByte(value.b)
@@ -223,13 +223,125 @@ EndMacro
 
 
 ; // end region
+; // region ...Assert Macros...
 
 
+; // Stores the procedures required for the assert macro.
+Macro __PBMEnsureAssertProcedures()
+	
+	CompilerIf Not Defined(PBM_ASSERT_PROCEDURES_DEFINED, #PB_Constant)
+		#PBM_ASSERT_PROCEDURES_DEFINED = #True
+		
+		CompilerIf #PBM_ENABLE_DEBUGGER Or Defined(PBM_ENABLE_ASSERTS, #PB_Constant)
+			CompilerIf #PBM_CONSOLE
+				
+				; // If the executable format is set to console, an error message will be printed.
+				Procedure.i __PBMAssertConsole(timestamp.i, file.s, line.i, function.s, expression.s, message.s)	
+					If function = ""
+						function = "main()"
+					EndIf
+					
+					PrintN("[ASSERTION FAILED]")
+					PrintN("  > " + FormatDate("%yyyy-%mm-%dd %hh:%ii:%ss", timestamp) + " @ " + function + " in file " + file + " on line " + Str(line) + ".")
+					PrintN("  >")
+					PrintN("  > " + expression + " == false")
+					
+					If Not message = ""
+						PrintN("  >")
+						PrintN("  > " + message)
+					EndIf
+					
+					CallDebugger
+					End 1
+				EndProcedure
+				
+			CompilerElse
+				
+				; // In case of a regular window application, a message box will be shown.
+				Procedure.i __PBMAssertMessageBox(timestamp.i, file.s, line.i, function.s, expression.s, message.s)
+					Protected text.s
+					
+					If function = ""
+						function = "main()"
+					EndIf
+					
+					text = FormatDate("%yyyy-%mm-%dd %hh:%ii:%ss", timestamp) + " @ " + function + " in file " + file + " on line " + Str(line) + "." + #LF$
+					text + #LF$
+					text + expression + " == false" + #LF$
+					
+					If Not message = ""
+						text + message + #LF$
+					EndIf
+					
+					text + #LF$ + "The application will be terminated."
+					
+					CompilerIf #PBM_WINDOWS
+						MessageRequester("ASSERTION FAILED", text, #MB_ICONERROR)
+					CompilerElse
+						MessageRequester("ASSERTION FAILED", text)
+					CompilerEndIf
+					
+					CallDebugger
+					End 1
+				EndProcedure
+				
+			CompilerEndIf
+		CompilerEndIf
+	CompilerEndIf
+EndMacro
+
+; // Evaluates the expression. If the resulting value is 'false', an error with the specified message
+; // will be displayed and the execution of the application will be terminated immediately.
+Macro assert(__expression, __message = "")
+	__PBMEnsureAssertProcedures()
+	CompilerIf #PBM_ENABLE_DEBUGGER Or Defined(PBM_ENABLE_ASSERTS, #PB_Constant)
+		If Not boolean(__expression)
+			CompilerIf #PB_Compiler_ExecutableFormat = #PB_Compiler_Console
+				__PBMAssertConsole(Date(), #PB_Compiler_Filename, #PB_Compiler_Line, #PB_Compiler_Procedure, stringify(__expression), __message)
+			CompilerElse
+				__PBMAssertMessageBox(Date(), #PB_Compiler_Filename, #PB_Compiler_Line, #PB_Compiler_Procedure, stringify(__expression),__message)
+			CompilerEndIf
+		EndIf
+	CompilerEndIf
+EndMacro
+
+
+; // end region
+; // region ...Keyword Substitution Macros...
+
+
+; // Substitutes the 'ProcedureReturn' keyword.
+Macro yield
+	ProcedureReturn
+EndMacro
+
+; // Substitutes the 'Protected' keyword.
+Macro private
+	Protected
+EndMacro
+
+; // Substitutes the 'StructureUnion' keyword.
+Macro union
+	StructureUnion
+EndMacro
+	
+; // Substitutes the 'EndStructureUnion' keyword.
+Macro endunion
+	EndStructureUnion
+EndMacro
+
+; // Substitutes the 'End' keyword.
+Macro exit
+	End
+EndMacro
+
+
+; // end region
 
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 227
-; FirstLine = 182
-; Folding = ----
+; CursorPosition = 301
+; FirstLine = 268
+; Folding = ------
 ; EnableXP
