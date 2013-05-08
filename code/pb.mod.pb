@@ -100,15 +100,33 @@ EndMacro
 
 
 ; // end region
+; // region ...Value Macros...
 
 
+; // Defines the 'true' keyword.
+Macro true
+	#True
+EndMacro
+
+; // Defines the 'false' keyword.
+Macro false
+	#False
+EndMacro
+
+; // Defines the 'null' keyword.
+Macro null
+	#Null
+EndMacro
+
+
+; // end region
 
 
 
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 105
-; FirstLine = 58
+; CursorPosition = 119
+; FirstLine = 79
 ; Folding = --
 ; EnableXP
