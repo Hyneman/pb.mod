@@ -138,6 +138,69 @@ Macro debugger
 	EnableDebugger
 EndMacro
 
+; // Enables more specific language extensions. Because procedures can't be
+; // compiled into resident files means,  that they need to be stored inside a macro.
+; // This macro only needs to be called once, however it is adviced to call it at the
+; // top of every file together with 'option explicit' and 'option debugger'.
+Macro extensions
+	CompilerIf Not symbol(PBM_EXTENSIONS_DEFINED)
+		#PBM_EXTENSIONS_DEFINED = #True
+		
+		Procedure.b __PBMCastByte(value.b)
+			ProcedureReturn value
+		EndProcedure
+		
+		Procedure.w __PBMCastWord(value.w)
+			ProcedureReturn value
+		EndProcedure
+		
+		Procedure.l __PBMCastLong(value.l)
+			ProcedureReturn value
+		EndProcedure
+		
+		Procedure.q __PBMCastQuad(value.q)
+			ProcedureReturn value
+		EndProcedure
+		
+		Procedure.f __PBMCastFloat(value.f)
+			ProcedureReturn value
+		EndProcedure
+	
+		Procedure.d __PBMCastDouble(value.d)
+			ProcedureReturn value
+		EndProcedure
+		
+		Procedure.a __PBMCastAscii(value.a)
+			ProcedureReturn value
+		EndProcedure
+		
+		Procedure.u __PBMCastUnicode(value.u)
+			ProcedureReturn value
+		EndProcedure
+		
+	CompilerEndIf
+EndMacro
+
+
+; // end region
+; // region ...Type Casting Macros...
+
+
+; // Treats the expression as a boolean value.
+Macro __PBMCastBoolean(__expression)
+	Bool(__expression)
+EndMacro
+
+; // Casts the expression into an integer value.
+Macro __PBMCastInteger(__expression)
+	Int(__expression)
+EndMacro
+
+; // Casts the expression into the specified type using a function call.
+Macro cast(__type, __expression)
+	__PBMCast#__type(__expression)
+EndMacro
+
 
 ; // end region
 
@@ -145,7 +208,7 @@ EndMacro
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 138
-; FirstLine = 98
-; Folding = ---
+; CursorPosition = 187
+; FirstLine = 161
+; Folding = ----
 ; EnableXP
