@@ -216,14 +216,20 @@ Macro cast(__type, __expression)
 	__PBMCast#__type(__expression)
 EndMacro
 
+; // Evaluates the specified expression to 'true' or 'false'.
+Macro boolean(__expression)
+	Bool(__expression)
+EndMacro
+
 
 ; // end region
 
 
 
 
+
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 195
-; FirstLine = 173
+; CursorPosition = 227
+; FirstLine = 182
 ; Folding = ----
 ; EnableXP
