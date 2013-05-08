@@ -90,12 +90,25 @@ EndMacro
 
 
 ; // end region
+; // region ...Symbol Definition Macros...
+
+
+; // Checks if the constant has been defined.
+Macro symbol(__constant)
+	Defined(__constant, #PB_Constant)
+EndMacro
+
+
+; // end region
+
+
+
 
 
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 93
-; FirstLine = 48
-; Folding = -
+; CursorPosition = 105
+; FirstLine = 58
+; Folding = --
 ; EnableXP
