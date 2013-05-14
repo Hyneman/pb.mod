@@ -28,6 +28,15 @@ EnableExplicit
 ; // region ...Compiler Constants...
 
 
+#PBM_NAME = "pb.mod"
+#PBM_VERSION = "1.0a"
+#PBM_FULL_NAME = "pb.mod" + " " + #PBM_VERSION
+#PBM_AUTHOR = "pb.mod is developed by SilentByte (http://www.silentbyte.com/)."
+
+#PBM_SYSTEM_PTR_SIZE = SizeOf(Integer)
+#PBM_SYSTEM_PTR_ALIGN = SizeOf(Integer)
+
+
 CompilerIf #PB_Compiler_ExecutableFormat = #PB_Compiler_Console
 	#PBM_CONSOLE = #True
 	#PBM_DLL = #False
@@ -54,6 +63,23 @@ CompilerElse
 CompilerEndIf
 
 
+CompilerSelect #PB_Compiler_Processor
+		
+	CompilerCase #PB_Processor_x86
+		#PBM_SYSTEM_X86 = #True
+		#PBM_SYSTEM_X64 = #False
+		
+	CompilerCase #PB_Processor_x64
+		#PBM_SYSTEM_X86 = #False
+		#PBM_SYSTEM_X64 = #True
+		
+	CompilerDefault
+		#PBM_SYSTEM_X86 = #False
+		#PBM_SYSTEM_X64 = #False
+		
+CompilerEndSelect
+
+
 CompilerSelect #PB_Compiler_OS
 		
 	CompilerCase #PB_OS_Windows
@@ -72,6 +98,42 @@ CompilerSelect #PB_Compiler_OS
 		#PBM_MACOS = #True
 		
 CompilerEndSelect
+
+
+#PBM_BYTE_MINIMUM = -128
+#PBM_BYTE_MAXIMUM = 127
+#PBM_BYTE_SIGNED_MINIMUM = #PBM_BYTE_MINIMUM
+#PBM_BYTE_SIGNED_MAXIMUM = #PBM_BYTE_MAXIMUM
+#PBM_BYTE_UNSIGNED_MINIMUM = 0
+#PBM_BYTE_UNSIGNED_MAXIMUM = 255
+
+#PBM_WORD_MINIMUM = -32768
+#PBM_WORD_MAXIMUM = 32767
+#PBM_WORD_SIGNED_MINIMUM = #PBM_WORD_MINIMUM
+#PBM_WORD_SIGNED_MAXIMUM = #PBM_WORD_MAXIMUM
+#PBM_WORD_UNSIGNED_MINIMUM = 0
+#PBM_WORD_UNSIGNED_MAXIMUM = 65535
+
+
+CompilerIf #PBM_SYSTEM_X86
+	
+	#PBM_INTEGER_MINIMUM = -2147483648
+	#PBM_INTEGER_MAXIMUM = 2147483647
+	#PBM_INTEGER_SIGNED_MINIMUM = #PBM_INTEGER_MINIMUM
+	#PBM_INTEGER_SIGNED_MAXIMUM = #PBM_INTEGER_MAXIMUM
+	#PBM_INTEGER_UNSIGNED_MINIMUM = 0
+	#PBM_INTEGER_UNSIGNED_MAXIMUM = 4294967295
+
+CompilerElseIf #PBM_SYSTEM_X64
+	
+	#PBM_INTEGER_MINIMUM = -9223372036854775808
+	#PBM_INTEGER_MAXIMUM = 9223372036854775807
+	#PBM_INTEGER_SIGNED_MINIMUM = #PBM_INTEGER_MINIMUM
+	#PBM_INTEGER_SIGNED_MAXIMUM = #PBM_INTEGER_MAXIMUM
+	#PBM_INTEGER_UNSIGNED_MINIMUM = 0
+	#PBM_INTEGER_UNSIGNED_MAXIMUM = 18446744073709551615
+	
+CompilerEndIf
 
 
 ; // end region
@@ -341,8 +403,8 @@ EndMacro
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 301
-; FirstLine = 268
+; CursorPosition = 138
+; FirstLine = 123
 ; Folding = ------
 ; EnableUnicode
 ; EnableXP
