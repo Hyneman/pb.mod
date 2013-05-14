@@ -31,7 +31,7 @@ EnableExplicit
 #PBM_NAME = "pb.mod"
 #PBM_VERSION = "1.0a"
 #PBM_FULL_NAME = "pb.mod" + " " + #PBM_VERSION
-#PBM_AUTHOR = "pb.mod is developed by SilentByte (http://www.silentbyte.com/)."
+#PBM_AUTHOR = "pb.mod is developed by Silent Byte (http://www.silentbyte.com/)."
 
 #PBM_SYSTEM_PTR_SIZE = SizeOf(Integer)
 #PBM_SYSTEM_PTR_ALIGN = SizeOf(Integer)
@@ -137,6 +137,73 @@ CompilerEndIf
 
 
 ; // end region
+; // region ...Structures...
+
+
+; // Provides a convinient way to access character arrays (strings).
+; // Do note that the byte values will be treated as unsigned values.
+Structure CharArray
+	StructureUnion
+		value.c
+		index.c[0]
+	EndStructureUnion
+EndStructure
+
+; // Provides a convinient way to access byte values of an array.
+Structure ByteArray
+	StructureUnion
+		value.a
+		index.a[0]
+	EndStructureUnion
+EndStructure
+
+; // Provides a convinient way to access integer values of an array.
+Structure IntegerArray
+	StructureUnion
+		value.i
+		index.i[0]
+	EndStructureUnion
+EndStructure
+
+; // Provides a convinient way to access floating point values of an array.
+Structure FloatArray
+	StructureUnion
+		value.f
+		index.f[0]
+	EndStructureUnion
+EndStructure
+
+; // Provides a convinient way to access double precision values of an array.
+Structure DoubleArray
+	StructureUnion
+		value.d
+		index.d[0]
+	EndStructureUnion
+EndStructure
+
+; // Provides access to each byte of an integer.
+Structure IntegerBuilder
+	StructureUnion
+		value.i
+		byte.a[0]
+		
+		first.a
+		second.a
+		third.a
+		fourth.a
+		
+		CompilerIf #PBM_SYSTEM_X64
+			fifth.a
+			sixth.a
+			seventh.a
+			eighth.a
+		CompilerEndIf
+		
+	EndStructureUnion
+EndStructure
+
+
+; // endregion
 ; // region ...String Macros...
 
 
@@ -403,8 +470,8 @@ EndMacro
 
 
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 138
-; FirstLine = 123
+; CursorPosition = 33
+; FirstLine = 77
 ; Folding = ------
 ; EnableUnicode
 ; EnableXP
