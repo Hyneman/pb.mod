@@ -16,7 +16,7 @@ I decided to publish this project on github.com because I know there are a handf
 
 How it Works
 ------------
-Using this package doesn't require any tools or patches to be installed that change the language. I think this is a necessary design choice because PureBasic often receives updates that break compatibility with such tools. These additions solely rely on PureBasic's macro support via "Resident Files". If you have a look at the code you will be able to figure out pretty quickly how the changes are made.
+Using this package doesn't require any tools or patches to be installed that change the language. I think this is a necessary design choice because PureBasic often receives updates that break compatibility with such tools. These additions solely rely on PureBasic's macro support via "Resident Files". If you have a look at the code you will be able to figure out pretty quickly how the changes are made. Do note that pb.mod is, of course, not built on its own features in order to avoid compilation problems.
 
 
 
