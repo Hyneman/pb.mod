@@ -20,16 +20,19 @@ continue
 debug
 debugger
 declare
+declaremodule
 default
 define
 defined
 double
 else
 elseif
+enddeclaremodule
 endif
 endimport
 endinterface
 endmacro
+endmodule
 endprocedure
 endselect
 endstructure
@@ -55,6 +58,7 @@ list
 long
 macro
 map
+module
 newlist
 newmap
 next
@@ -78,6 +82,7 @@ to
 true
 unicode
 union
+unit
 unless
 until
 using

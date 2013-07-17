@@ -219,12 +219,17 @@ EndMacro
 
 
 ; // end region
-; // region ...Symbol Definition Macros...
+; // region ...Definition Macros...
 
 
 ; // Checks if the constant has been defined.
 Macro symbol(__constant)
 	Defined(__constant, #PB_Constant)
+EndMacro
+
+; // Checks if the specified module has been defined.
+Macro unit(__module)
+	Defined(__module, #PB_Module)
 EndMacro
 
 
@@ -469,9 +474,9 @@ EndMacro
 
 
 
-; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 33
-; FirstLine = 77
-; Folding = ------
+; IDE Options = PureBasic 5.20 beta 6 (Windows - x86)
+; CursorPosition = 229
+; FirstLine = 209
+; Folding = -----
 ; EnableUnicode
 ; EnableXP
