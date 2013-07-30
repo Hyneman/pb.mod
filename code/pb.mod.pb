@@ -31,7 +31,7 @@ EnableExplicit
 #PBM_NAME = "pb.mod"
 #PBM_VERSION = "1.0a"
 #PBM_FULL_NAME = "pb.mod" + " " + #PBM_VERSION
-#PBM_AUTHOR = "pb.mod is developed by Silent Byte (http://www.silentbyte.com/)."
+#PBM_DEVELOPMENT = "Developed by Silent Byte (http://www.silentbyte.com/)."
 
 #PBM_SYSTEM_PTR_SIZE = SizeOf(integer)
 #PBM_SYSTEM_PTR_ALIGN = SizeOf(integer)
@@ -500,8 +500,8 @@ EndMacro
 
 
 ; IDE Options = PureBasic 5.20 beta 6 (Windows - x86)
-; CursorPosition = 152
-; FirstLine = 453
+; CursorPosition = 33
+; FirstLine = 18
 ; Folding = ------
 ; EnableUnicode
 ; EnableXP
