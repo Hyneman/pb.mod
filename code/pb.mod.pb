@@ -31,10 +31,10 @@ EnableExplicit
 #PBM_NAME = "pb.mod"
 #PBM_VERSION = "1.0a"
 #PBM_FULL_NAME = "pb.mod" + " " + #PBM_VERSION
-#PBM_AUTHOR = "pb.mod is developed by Silent Byte (http://www.silentbyte.com/)."
+#PBM_DEVELOPMENT = "Developed by Silent Byte (http://www.silentbyte.com/)."
 
-#PBM_SYSTEM_PTR_SIZE = SizeOf(Integer)
-#PBM_SYSTEM_PTR_ALIGN = SizeOf(Integer)
+#PBM_SYSTEM_PTR_SIZE = SizeOf(integer)
+#PBM_SYSTEM_PTR_ALIGN = SizeOf(integer)
 
 
 CompilerIf #PB_Compiler_ExecutableFormat = #PB_Compiler_Console
@@ -150,10 +150,27 @@ Structure CharArray
 EndStructure
 
 ; // Provides a convinient way to access byte values of an array.
+; // Do note, that the actual type is ASCII (.a) to provide unsigned byte support.
 Structure ByteArray
 	StructureUnion
 		value.a
 		index.a[0]
+	EndStructureUnion
+EndStructure
+
+; // Provides a convinient way to access word values of an array.
+Structure WordArray
+	StructureUnion
+		value.w
+		index.w[0]
+	EndStructureUnion
+EndStructure
+
+; // Provides a convinient way to access long values of an array.
+Structure LongArray
+	StructureUnion
+		value.l
+		index.l[0]
 	EndStructureUnion
 EndStructure
 
@@ -162,6 +179,14 @@ Structure IntegerArray
 	StructureUnion
 		value.i
 		index.i[0]
+	EndStructureUnion
+EndStructure
+
+; // Provides a convinient way to access quad values of an array.
+Structure QuadArray
+	StructureUnion
+		value.q
+		index.q[0]
 	EndStructureUnion
 EndStructure
 
@@ -475,8 +500,8 @@ EndMacro
 
 
 ; IDE Options = PureBasic 5.20 beta 6 (Windows - x86)
-; CursorPosition = 229
-; FirstLine = 209
-; Folding = -----
+; CursorPosition = 33
+; FirstLine = 18
+; Folding = ------
 ; EnableUnicode
 ; EnableXP
